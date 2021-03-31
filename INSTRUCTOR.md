@@ -4,13 +4,13 @@
 
 Install terraform:
 
-```
+```shell
 brew install terraform
 ```
 
 Install ansible:
 
-```
+```shell
 pip3 install ansible
 ```
 
@@ -18,13 +18,13 @@ pip3 install ansible
 
 Go to the terraform directory:
 
-```
+```shell
 cd terraform
 ```
 
 Run the following command is used to initialize the working directory:
 
-```
+```shell
 terraform init
 ```
 
@@ -36,7 +36,7 @@ Edit the `gce.tf` file to adapt it to your needs:
 
 Run the following command to deploy the Virtual Machines:
 
-```
+```shell
 terraform apply -auto-approve
 ```
 
@@ -45,18 +45,19 @@ When the deployment is finished, you need to run the ansible script to deploy th
 Load the `lab` ssh key:
 
 ---
-**NOTE**  
+
+**NOTE**
 If you don't already have the `lab` private key available locally, retrieve it from the shared Google Drive that contains other workshop resources.
 
 ---
 
-```
+```shell
 ssh-add lab
 ```
 
 Create the ansible `hosts` file from the terraform output:
 
-```
+```shell
 echo "[hosts]" > hosts
 terraform output -json | jq -r '.gce_public_ip.value[]' | while read ip; do echo $ip ansible_host=$ip ansible_user=solo >> hosts; done
 ```
@@ -67,7 +68,7 @@ Remove the SSH known hosts (optional, but recommended as Google Cloud reuses the
 echo > $HOME/.ssh/known_hosts
 ```
 
-All solo.io enterprise products require a license key.  If you'd like to preset limited-term keys on the student Virtual Machines, then set the `LICENSE_KEY` and `GLOO_MESH_LICENSE_KEY` and `PORTAL_LICENSE_KEY` environment variables on your workstation before running the `ansible-playbook` command.
+All solo.io enterprise products require a license key. If you'd like to preset limited-term keys on the student Virtual Machines, then set the `LICENSE_KEY` and `GLOO_MESH_LICENSE_KEY` and `PORTAL_LICENSE_KEY` environment variables on your workstation before running the `ansible-playbook` command.
 
 ```
 export LICENSE_KEY=VeryLongKeyString
@@ -118,19 +119,19 @@ terraform destroy -force
 
 You can use emoji's in GitHub markdown to signal additional callouts such as:
 
-* :information_source: - Info
-* :memo: - Note
-* :warning: - Warning
-* :bulb: - hint
-* :x: - Error
-* :heavy_check_mark: - Correct
-* :question: - Question
-* :construction: - WIP
-* :eyes: - Be careful
+- :information_source: - Info
+- :memo: - Note
+- :warning: - Warning
+- :bulb: - hint
+- :x: - Error
+- :heavy_check_mark: - Correct
+- :question: - Question
+- :construction: - WIP
+- :eyes: - Be careful
 
 You can use GitBook [hints and callouts](https://docs.gitbook.com/editing-content/markdown#hints-and-callouts) with the following types:
 
-* info
-* success
-* danger
-* warning
+- info
+- success
+- danger
+- warning

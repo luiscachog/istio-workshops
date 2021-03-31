@@ -1,0 +1,17 @@
+{
+  "excludeFiles": [
+    ".git",
+    "libs",
+    "node_modules",
+    "yaspeller"
+  ],
+  "lang": "en",
+  "fileExtensions": [
+    ".md",
+    ".css"
+  ],
+  "ignoreTags": ["code", "script", "shell"],
+  "ignoreUrls": true,
+  "findRepeatWords": true,
+  "maxRequests": 5
+}
